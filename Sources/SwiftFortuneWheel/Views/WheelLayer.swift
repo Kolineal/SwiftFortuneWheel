@@ -94,16 +94,24 @@ class WheelLayer: CALayer {
         let end = sliceDegree - offSetDegree
         
         // Draws slices with content
-        self.slices.enumerated().forEach { (index,element) in
-            rotation += sliceDegree
-            self.drawSlice(withIndex: index,
-                           in: context,
-                           forSlice: element,
-                           rotation:rotation,
-                           start: start,
-                           end: end)
+        if let backgroundImage = preferences?.backgroundImage {
+            let insets = preferences?.layerInsets ?? .zero
+            let position = CGPoint(x: abs(insets.left), y: abs(insets.top))
+            self.draw(backgroundImage: backgroundImage,
+                      in: context,
+                      radius: radius,
+                      position: position)
+        } else {
+            self.slices.enumerated().forEach { (index,element) in
+                rotation += sliceDegree
+                self.drawSlice(withIndex: index,
+                               in: context,
+                               forSlice: element,
+                               rotation:rotation,
+                               start: start,
+                               end: end)
+            }
         }
-        
         //// Frame drawing
         let circleFrame = UIBezierPath(ovalIn: frame)
         preferences?.circlePreferences.strokeColor.setStroke()
@@ -150,3 +158,4 @@ class WheelLayer: CALayer {
 
 extension WheelLayer: SliceDrawing {}
 extension WheelLayer: SpinningAnimatable {}
+extension WheelLayer: ImageDrawing {}

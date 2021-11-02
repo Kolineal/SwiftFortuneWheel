@@ -109,5 +109,15 @@ extension ImageDrawing {
         context.restoreGState()
         context.restoreGState()
     }
-    
+    func draw(backgroundImage: SFWImage, in context: CGContext, radius: CGFloat, position: CGPoint) {
+
+        context.saveGState()
+        context.clip()
+        
+        let aspectFillSize = CGSize.aspectFill(aspectRatio: backgroundImage.size, minimumSize: CGSize(width: radius * 2, height: radius * 2))
+        
+        let rectangle = CGRect(x: position.x, y: position.y, width: aspectFillSize.width, height: aspectFillSize.height)
+        backgroundImage.draw(in: rectangle)
+        context.restoreGState()
+    }
 }
