@@ -55,6 +55,9 @@ public extension SFWConfiguration {
         /// Slice preferences
         public var slicePreferences: SlicePreferences
         
+        /// Shadow preferences
+        public var shadowPreferences: ShadowPreferences?
+        
         /// Start position, should be equal to FortuneWheelConfiguration.pinPreferences.position
         public var startPosition: Position
         
@@ -250,6 +253,19 @@ public extension SFWConfiguration {
             self.horizontalOffset = horizontalOffset
             self.verticalOffset = verticalOffset
         }
+    }
+}
+
+public extension SFWConfiguration {
+    struct ShadowPreferences {
+        /// Shadow color
+        public var color: SFWColor = .black
+        
+        /// Shadow radius
+        public var radius: CGFloat = 5
+        
+        /// Shadow opacity
+        public var opacity: Float = 1
     }
 }
 
