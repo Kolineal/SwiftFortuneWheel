@@ -117,6 +117,7 @@ class WheelLayer: CALayer {
             self.shadowColor = shadowPreferences.color.cgColor
             self.shadowRadius = shadowPreferences.radius
             self.shadowOpacity = shadowPreferences.opacity
+            self.shadowOffset = .zero
         }
         //// Frame drawing
         let circleFrame = UIBezierPath(ovalIn: frame)
