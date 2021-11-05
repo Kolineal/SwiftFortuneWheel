@@ -266,6 +266,14 @@ public extension SFWConfiguration {
         
         /// Shadow opacity
         public var opacity: Float = 1
+        
+        public init(color: SFWColor,
+                    radius: CGFloat,
+                    opacity: Float) {
+            self.color = color
+            self.radius = radius
+            self.opacity = opacity
+        }
     }
 }
 
