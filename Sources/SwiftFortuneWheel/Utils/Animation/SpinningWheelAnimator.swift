@@ -67,6 +67,7 @@ class SpinningWheelAnimator: NSObject {
     /// Start indefinite rotation animation
     /// - Parameter speed: Rotation speed, speed is equal to full rotation quantity in one second
     func addIndefiniteRotationAnimation(speed: CGFloat = 1,
+                                        cycleDuration: CGFloat = 1,
                                         onEdgeCollision: ((_ progress: Double?) -> Void)? = nil,
                                         onCenterCollision: ((_ progress: Double?) -> Void)? = nil) {
         
@@ -83,7 +84,7 @@ class SpinningWheelAnimator: NSObject {
         let transformAnim      = CAKeyframeAnimation(keyPath:"transform.rotation.z")
         transformAnim.values   = [0, fullRotationDegree * speed * speedAcceleration * CGFloat.pi/180 * rotationDirectionOffset]
         transformAnim.keyTimes = [0, 1]
-        transformAnim.duration = 1
+        transformAnim.duration = cycleDuration
         
         let rotationAnim : CAAnimationGroup = CAAnimationGroup(animations: [transformAnim], fillMode:fillMode)
         rotationAnim.repeatCount = Float.infinity

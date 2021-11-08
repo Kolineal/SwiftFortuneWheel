@@ -508,9 +508,9 @@ public extension SwiftFortuneWheel {
     
     /// Starts continuos rotation animation
     /// - Parameter speed: Rotation speed
-    func startContinuousRotationAnimation(with speed: CGFloat = 4) {
+    func startContinuousRotationAnimation(with speed: CGFloat = 4, cycleDuration: CGFloat = 1) {
         self.stopRotation()
-        self.animator.addIndefiniteRotationAnimation(speed: speed, onEdgeCollision: { [weak self] progress in
+        self.animator.addIndefiniteRotationAnimation(speed: speed, cycleDuration: cycleDuration, onEdgeCollision: { [weak self] progress in
             self?.impactIfNeeded(for: .edge)
             self?.onEdgeCollision?(progress)
         })
